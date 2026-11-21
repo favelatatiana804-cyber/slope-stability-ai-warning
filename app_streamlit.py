@@ -11,7 +11,7 @@ from slope_lem import search_critical_slip
 
 st.set_page_config(page_title="边坡稳定性智能评估与滑坡预警系统", page_icon="⛰️", layout="wide")
 st.title("⛰️ 边坡稳定性智能评估与滑坡预警系统")
-st.caption("《土力学（双语）》第八章课程设计 · 集成极限平衡条分法、机器学习代理模型与加固智能推荐 · 作者：5120243437")
+st.caption("《土力学（双语）》第八章课程设计 · 集成极限平衡条分法、机器学习代理模型与加固智能推荐----------------------------------作者：5120243437")
 
 # 侧边栏：现场监测与边坡参数输入
 st.sidebar.header("1. 边坡几何与土体参数")
