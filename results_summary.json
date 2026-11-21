@@ -1,0 +1,229 @@
+{
+  "n_samples": 1192,
+  "n_train": 953,
+  "n_test": 239,
+  "fs_stats": {
+    "min": 0.259,
+    "max": 4.238,
+    "mean": 1.26,
+    "std": 0.661,
+    "class_counts": {
+      "低易发(稳定)": 442,
+      "中易发(基本稳定)": 88,
+      "高易发(欠稳定)": 123,
+      "极高易发(不稳定)": 539
+    }
+  },
+  "benchmarks": [
+    {
+      "case": "均质干燥黏性土边坡",
+      "H": 12.0,
+      "beta": 35.0,
+      "gamma": 19.0,
+      "c": 20.0,
+      "phi": 20.0,
+      "ru": 0.0,
+      "Fs_Swedish": 1.334,
+      "Fs_Bishop": 1.404,
+      "Fs_Janbu": 1.401,
+      "xc": 2.86,
+      "yc": 18.81,
+      "R": 19.04
+    },
+    {
+      "case": "含地下水边坡 (ru=0.25)",
+      "H": 12.0,
+      "beta": 35.0,
+      "gamma": 19.0,
+      "c": 20.0,
+      "phi": 20.0,
+      "ru": 0.25,
+      "Fs_Swedish": 1.097,
+      "Fs_Bishop": 1.17,
+      "Fs_Janbu": 1.163,
+      "xc": 3.37,
+      "yc": 19.24,
+      "R": 19.2
+    },
+    {
+      "case": "高陡粉质黏土边坡",
+      "H": 20.0,
+      "beta": 45.0,
+      "gamma": 20.0,
+      "c": 25.0,
+      "phi": 25.0,
+      "ru": 0.15,
+      "Fs_Swedish": 0.932,
+      "Fs_Bishop": 0.992,
+      "Fs_Janbu": 0.99,
+      "xc": -2.51,
+      "yc": 27.98,
+      "R": 27.89
+    },
+    {
+      "case": "软土缓坡 (ru=0.35)",
+      "H": 10.0,
+      "beta": 25.0,
+      "gamma": 18.0,
+      "c": 12.0,
+      "phi": 14.0,
+      "ru": 0.35,
+      "Fs_Swedish": 0.885,
+      "Fs_Bishop": 0.967,
+      "Fs_Janbu": 0.948,
+      "xc": 7.31,
+      "yc": 20.61,
+      "R": 22.14
+    }
+  ],
+  "regression_models": {
+    "随机森林 (RF)": {
+      "R2": 0.9102,
+      "RMSE": 0.2034,
+      "MAE": 0.1357,
+      "MAPE_pct": 12.98,
+      "CV5_R2": 0.89,
+      "CV5_RMSE": 0.215,
+      "Train_Time_s": 9.32
+    },
+    "梯度提升树 (XGBoost风格)": {
+      "R2": 0.9663,
+      "RMSE": 0.1245,
+      "MAE": 0.0758,
+      "MAPE_pct": 6.24,
+      "CV5_R2": 0.953,
+      "CV5_RMSE": 0.1405,
+      "Train_Time_s": 4.22
+    },
+    "神经网络 (MLP)": {
+      "R2": 0.9985,
+      "RMSE": 0.0264,
+      "MAE": 0.0165,
+      "MAPE_pct": 1.49,
+      "CV5_R2": 0.995,
+      "CV5_RMSE": 0.0459,
+      "Train_Time_s": 1.07
+    }
+  },
+  "best_model": "神经网络 (MLP)",
+  "feature_importance_perm_pct": {
+    "坡高 H (m)": 25.6,
+    "坡角 β (°)": 20.9,
+    "重度 γ (kN/m³)": 3.6,
+    "黏聚力 c (kPa)": 23.1,
+    "内摩擦角 φ (°)": 15.1,
+    "孔压比 ru": 11.7
+  },
+  "feature_importance_gbdt_pct": {
+    "坡高 H (m)": 21.9,
+    "坡角 β (°)": 20.0,
+    "重度 γ (kN/m³)": 8.9,
+    "黏聚力 c (kPa)": 19.3,
+    "内摩擦角 φ (°)": 16.8,
+    "孔压比 ru": 13.0
+  },
+  "susceptibility_clf": {
+    "Accuracy": 0.8954,
+    "Macro_F1": 0.7377,
+    "Confusion_Matrix": [
+      [
+        92,
+        6,
+        0,
+        0
+      ],
+      [
+        5,
+        7,
+        5,
+        0
+      ],
+      [
+        1,
+        3,
+        11,
+        1
+      ],
+      [
+        0,
+        0,
+        4,
+        104
+      ]
+    ]
+  },
+  "susceptibility_area_pct": {
+    "低易发区": 62.8,
+    "中易发区": 4.3,
+    "高易发区": 13.7,
+    "极高易发区": 19.2
+  },
+  "groundwater_sensitivity": {
+    "ru_0": 1.211,
+    "ru_025": 0.983,
+    "ru_050": 0.765,
+    "drop_pct": 36.8
+  },
+  "construction_coupling": {
+    "base_dH0_q0": 0.983,
+    "dH6_q0": 0.836,
+    "dH0_q60": 0.881,
+    "dH6_q60": 0.785
+  },
+  "reinforcement_schemes": [
+    {
+      "scheme": "方案A：削坡减载 (坡角36°→26°)",
+      "Fs_before": 1.007,
+      "Fs_after": 1.321,
+      "Delta_Fs": 0.314,
+      "Cost_w_per_m": 1.85,
+      "Efficiency_per_w": 0.17,
+      "Meets_1_35": false
+    },
+    {
+      "scheme": "方案B：截排水降压 (ru: 0.35→0.12)",
+      "Fs_before": 1.007,
+      "Fs_after": 1.254,
+      "Delta_Fs": 0.247,
+      "Cost_w_per_m": 1.2,
+      "Efficiency_per_w": 0.206,
+      "Meets_1_35": false
+    },
+    {
+      "scheme": "方案C：预应力锚索 (等效Δc=+12kPa)",
+      "Fs_before": 1.007,
+      "Fs_after": 1.414,
+      "Delta_Fs": 0.407,
+      "Cost_w_per_m": 2.9,
+      "Efficiency_per_w": 0.14,
+      "Meets_1_35": true
+    },
+    {
+      "scheme": "方案D：抗滑桩支护 (提供抗滑力)",
+      "Fs_before": 1.007,
+      "Fs_after": 1.576,
+      "Delta_Fs": 0.568,
+      "Cost_w_per_m": 4.2,
+      "Efficiency_per_w": 0.135,
+      "Meets_1_35": true
+    },
+    {
+      "scheme": "方案E：综合治理 (排水+锚索协同)",
+      "Fs_before": 1.007,
+      "Fs_after": 1.536,
+      "Delta_Fs": 0.528,
+      "Cost_w_per_m": 3.1,
+      "Efficiency_per_w": 0.17,
+      "Meets_1_35": true
+    }
+  ],
+  "reinforcement_case": {
+    "H": 15.0,
+    "beta": 36.0,
+    "gamma": 19.0,
+    "c": 22.0,
+    "phi": 22.0,
+    "ru": 0.35,
+    "Fs_before": 1.007
+  }
+}
